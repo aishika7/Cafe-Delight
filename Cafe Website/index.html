@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Cafe Delight</title>
     <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" type="image/png">
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&family=Dancing+Script&display=swap"
         rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
-            margin: 0;
+            margin: 0px;
             font-family: 'Inter', sans-serif;
             background: #fff8f5;
             color: #333;
             background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20240802/pngtree-food-and-coffee-vectors-wallpapers-image_16124199.jpg");
+            box-sizing: border-box;
         }
 
         h1,
@@ -52,16 +52,17 @@
         .logo {
             font-family: 'Dancing Script', cursive;
             font-size: 2rem;
-            color: #e07a5f;
+            color: #be5336;
         }
 
         nav a {
             margin-left: 1.5rem;
             font-weight: 600;
+            justify-content: end;
         }
 
         .cta-button {
-            background: #e07a5f;
+            background: #e07759;
             color: white;
             padding: 0.75rem 1.5rem;
             border: none;
@@ -71,7 +72,7 @@
         }
 
         .cta-button:hover {
-            background: #c7604c;
+            background: #da5f46;
             transform: scale(1.05);
         }
 
@@ -111,17 +112,61 @@
             margin-bottom: 1rem;
         }
 
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 1rem;
+            background: #fff0ebab;
+            flex-wrap: wrap;
+        }
+
+        .menu-tabs a {
+            padding: 0.5rem 1rem;
+            background: #dd6f50;
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .menu-tabs a:hover {
+            background: #ce4f35;
+        }
+
+        .menu-wrapper {
+            position: relative;
+            display: grid;
+            margin: 7px;
+        }
+
         .menu-grid {
-            padding: 4rem 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+
+        #all:target #breakfast,
+        #all:target #beverages,
+        #all:target #desserts,
+        #breakfast:target,
+        #beverages:target,
+        #desserts:target {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+            margin-bottom: 3rem;
         }
 
         .card {
             background: white;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 8px rgba(165, 54, 54, 0.664);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -130,7 +175,7 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.699);
+            box-shadow: 0 8px 16px rgba(233, 89, 89, 0.699);
         }
 
         .card img {
@@ -151,12 +196,11 @@
         }
 
         .card-content p {
-            flex-grow: 1;
             color: #555;
             margin-bottom: 1rem;
         }
 
-        .card-content .price {
+        .price {
             font-weight: 600;
             margin-bottom: .75rem;
         }
@@ -181,7 +225,7 @@
 
         .testimonials {
             padding: 4rem 2rem;
-            background: #ffffffb6;
+            background: #ffffffb9;
             text-align: center;
         }
 
@@ -193,9 +237,9 @@
         }
 
         .testimonial {
-            background: #faebe4;
+            background: #fff8f5;
             padding: 2rem;
-            border-left: 4px solid #e07a5f;
+            border-left: 4px solid #ee7452;
             border-radius: 4px;
             font-style: italic;
         }
@@ -210,13 +254,13 @@
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
             margin-bottom: 0.5rem;
-            color: #e44c22;
+            color: #da512c;
         }
 
         .newsletter p {
             font-size: 1.1rem;
             margin-bottom: 2rem;
-            color: #2e2e2e;
+            color: #2e2c2c;
         }
 
         .newsletter-form {
@@ -236,7 +280,7 @@
         }
 
         .newsletter-form button {
-            background-color: #e95b34;
+            background-color: #e06c4c;
             color: white;
             padding: 0.75rem 1.5rem;
             border: none;
@@ -247,16 +291,9 @@
         }
 
         .newsletter-form button:hover {
-            background-color: #c7604c;
+            background-color: #d1472b;
             transform: scale(1.05);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: #fff8f8;
-            color: #353434;
-            border-top: 1px solid #eee;
+            place-content: center;
         }
 
         .social-icons {
@@ -268,7 +305,7 @@
         }
 
         .social-icons a {
-            color: #ff5424;
+            color: #d6451c;
             font-size: 1.1rem;
             text-decoration: none;
             display: flex;
@@ -281,8 +318,14 @@
             color: #c7604c;
         }
 
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #ffffff;
+            color: #424242;
+            border-top: 1px solid #eee;
+        }
 
-        /* Tablets (768px - 1024px) */
         @media (max-width: 1024px) {
 
             header,
@@ -303,7 +346,6 @@
             }
         }
 
-        /* for small tablets */
         @media (max-width: 768px) {
             .hero {
                 height: 50vh;
@@ -342,7 +384,7 @@
                 flex-direction: column;
             }
 
-            .newsletter-form input[type=\"email\"],
+            .newsletter-form input,
             .newsletter-form button {
                 width: 90%;
             }
@@ -353,7 +395,6 @@
             }
         }
 
-        /* Phones (max 480px) */
         @media (max-width: 480px) {
             .logo {
                 font-size: 1.5rem;
@@ -389,9 +430,10 @@
     <header>
         <div class="logo">Cafe Delight</div>
         <nav>
-            <a href="#menu">Menu</a>
+            <a href="#breakfast">Menu</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
+            <a href="#cart">Cart</a>
             <button class="cta-button">Order Online</button>
         </nav>
     </header>
@@ -399,91 +441,146 @@
     <section class="hero">
         <h1>Fresh Brews & Sweet Treats</h1>
         <p>Cozy ambiance. Delicious pastries. Perfect coffee.</p>
-        <button class="cta-button">View Our Menu</button>
+        <a href="#breakfast" class="cta-button">View Our Menu</a>
     </section>
 
+    <div class="menu-tabs">
+        <a href="#all">Show All</a>
+        <a href="#breakfast">Breakfast</a>
+        <a href="#beverages">Beverages</a>
+        <a href="#desserts">Desserts</a>
+    </div>
 
-    <section id="menu" class="menu-grid">
-        <div class="card">
-            <img src="https://staresso.com/cdn/shop/articles/What_is_a_latte.jpg?v=1716606481" alt="Latte">
-            <div class="card-content">
-                <h3>Classic Latte</h3>
-                <p>Rich espresso, creamy milk topped with artful foam.</p>
-                <div class="price">$4.50</div>
-                <button class="cta-button">Order Now</button>
+    <section id="all" class="menu-wrapper">
+        <section id="breakfast" class="menu-grid">
+            <div class="card">
+                <img src="https://tornadoughalli.com/wp-content/uploads/2021/12/BUTTERMILK-PANCAKE-RECIPE-3-1.jpg"
+                    alt="Pancakes">
+                <div class="card-content">
+                    <h3>Buttermilk Pancakes</h3>
+                    <p>Fluffy pancakes served with maple syrup and berries.</p>
+                    <div class="price">$5.50</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <img src="https://www.allrecipes.com/thmb/i9KCEbxUGQ1Sa4F7Gts7SGBOpoM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/157877-vanilla-cupcakes-ddmfs-4X3-0397-59653731be1d4769969698e427d7f5bc.jpg"
-                alt="Cupcake">
-            <div class="card-content">
-                <h3>Vanilla Cupcake</h3>
-                <p>Light and fluffy, topped with buttercream frosting.</p>
-                <div class="price">$3.00</div>
-                <button class="cta-button">Order Now</button>
+            <div class="card">
+                <img src="https://tedboycnd-cdhwdbg6ard6f4cp.z01.azurefd.net/images/thumbs/0009553_butter-croissant_625.png"
+                    alt="Croissant">
+                <div class="card-content">
+                    <h3>Butter Croissant</h3>
+                    <p>Flaky pastry with a buttery, melt-in-mouth texture.</p>
+                    <div class="price">$2.80</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <img src="https://tedboycnd-cdhwdbg6ard6f4cp.z01.azurefd.net/images/thumbs/0009553_butter-croissant_625.png"
-                alt="Croissant">
-            <div class="card-content">
-                <h3>Butter Croissant</h3>
-                <p>Flaky pastry with a buttery, melt-in-mouth texture.</p>
-                <div class="price">$2.80</div>
-                <button class="cta-button">Order Now</button>
+            <div class="card">
+                <img src="https://www.thespruceeats.com/thmb/ArtZuvbymbGrTT7oDJKHd_QMgaE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/grilled-chicken-panini-sandwich-recipe-2097378-hero-01-09e7d3d7e8604a8a90217e6f9e356648.jpg"
+                    alt="Sandwich">
+                <div class="card-content">
+                    <h3>Grilled Panini</h3>
+                    <p>Cheesy delight filled with herbs and veggies.</p>
+                    <div class="price">$6.50</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoMJSOMCL5fvI3z6g1m_Sz7Q0jO0w6ZCbgJQ&s"
-                alt="Mocha">
-            <div class="card-content">
-                <h3>Mocha Delight</h3>
-                <p>Chocolate and coffee blended with cream.</p>
-                <div class="price">$5.00</div>
-                <button class="cta-button">Order Now</button>
+            <div class="card">
+                <img src="https://static.toiimg.com/photo/69385334.cms" alt="Herbal Tea">
+                <div class="card-content">
+                    <h3>Herbal Tea</h3>
+                    <p>Soothing blend of organic herbs and spices.</p>
+                    <div class="price">$3.20</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <img src="https://www.thespruceeats.com/thmb/ArtZuvbymbGrTT7oDJKHd_QMgaE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/grilled-chicken-panini-sandwich-recipe-2097378-hero-01-09e7d3d7e8604a8a90217e6f9e356648.jpg"
-                alt="Sandwich">
-            <div class="card-content">
-                <h3>Grilled Panini</h3>
-                <p>Cheesy delight filled with herbs and veggies.</p>
-                <div class="price">$6.50</div>
-                <button class="cta-button">Order Now</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://static.toiimg.com/photo/69385334.cms" alt="Herbal Tea">
-            <div class="card-content">
-                <h3>Herbal Tea</h3>
-                <p>Soothing blend of organic herbs and spices.</p>
-                <div class="price">$3.20</div>
-                <button class="cta-button">Order Now</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="https://carlsbadcravings.com/wp-content/uploads/2022/04/Strawberry-Cheesecake-13.jpg"
-                alt="Cheesecake">
-            <div class="card-content">
-                <h3>Strawberry Cheesecake</h3>
-                <p>Creamy cheesecake topped with fresh strawberries and glaze.</p>
-                <div class="price">$5.90</div>
-                <button class="cta-button">Order Now</button>
-            </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <img src="https://static.vecteezy.com/system/resources/thumbnails/051/200/909/small/double-shot-espresso-bold-intense-this-double-shot-of-espresso-captures-the-essence-of-rich-coffee-flavor-in-a-simple-cup-photo.jpg"
-                alt="Espresso">
-            <div class="card-content">
-                <h3>Double Espresso</h3>
-                <p>Strong and bold – a perfect caffeine kick in a small cup.</p>
-                <div class="price">$3.00</div>
-                <button class="cta-button">Order Now</button>
+        <section id="beverages" class="menu-grid">
+            <div class="card">
+                <img src="https://www.allrecipes.com/thmb/chsZz0jqIHWYz39ViZR-9k_BkkE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8624835-how-to-make-a-cappuccino-beauty-4x3-0301-13d55eaad60b42058f24369c292d4ccb.jpg"
+                    alt="Cappuccino">
+                <div class="card-content">
+                    <h3>Cappuccino</h3>
+                    <p>Rich espresso with steamed milk and a velvety foam.</p>
+                    <div class="price">$4.20</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
             </div>
-        </div>
+            <div class="card">
+                <img src="https://staresso.com/cdn/shop/articles/What_is_a_latte.jpg?v=1716606481" alt="Latte">
+                <div class="card-content">
+                    <h3>Classic Latte</h3>
+                    <p>Rich espresso, creamy milk topped with artful foam.</p>
+                    <div class="price">$4.50</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/051/200/909/small/double-shot-espresso-bold-intense-this-double-shot-of-espresso-captures-the-essence-of-rich-coffee-flavor-in-a-simple-cup-photo.jpg"
+                    alt="Espresso">
+                <div class="card-content">
+                    <h3>Double Espresso</h3>
+                    <p>Strong and bold – a perfect caffeine kick in a small cup.</p>
+                    <div class="price">$3.00</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
 
+            </div>
+            <div class="card">
+                <img src="https://www.scrumptiously.com/wp-content/uploads/2024/08/IcedCaramelLatte.webp"
+                    alt="Iced Coffee">
+                <div class="card-content">
+                    <h3>Iced Caramel Coffee</h3>
+                    <p>Chilled espresso with caramel syrup, milk, and ice.</p>
+                    <div class="price">$4.80</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="desserts" class="menu-grid">
+            <div class="card">
+                <img src="https://insanelygoodrecipes.com/wp-content/uploads/2024/06/chocolate-fudge-cake-5.jpg"
+                    alt="Cake">
+                <div class="card-content">
+                    <h3>Chocolate Fudge Cake</h3>
+                    <p>Moist chocolate cake with layers of rich fudge frosting.</p>
+                    <div class="price">$6.00</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://www.jordanwinery.com/wp-content/uploads/2020/04/French-Macaron-Cookie-Recipe-WebHero-6435.jpg"
+                    alt="Macarons">
+                <div class="card-content">
+                    <h3>French Macarons</h3>
+                    <p>Colorful almond meringue cookies with creamy filling.</p>
+                    <div class="price">$5.20</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://carlsbadcravings.com/wp-content/uploads/2022/04/Strawberry-Cheesecake-13.jpg"
+                    alt="Cheesecake">
+                <div class="card-content">
+                    <h3>Strawberry Cheesecake</h3>
+                    <p>Creamy cheesecake topped with fresh strawberries and glaze.</p>
+                    <div class="price">$5.90</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoMJSOMCL5fvI3z6g1m_Sz7Q0jO0w6ZCbgJQ&s"
+                    alt="Mocha">
+                <div class="card-content">
+                    <h3>Mocha Delight</h3>
+                    <p>Chocolate and coffee blended with cream.</p>
+                    <div class="price">$5.00</div>
+                    <button class="cta-button">Order Now</button>
+                </div>
+            </div>
+        </section>
     </section>
 
     <section id="about" class="about">
@@ -498,7 +595,6 @@
                 a hint of indulgence. Whether you're catching up with friends or finding a quiet corner to work, Cafe
                 Delight is your warm space for connection, comfort, and great taste.
             </p>
-
         </div>
     </section>
 
@@ -511,6 +607,7 @@
             <div class="testimonial">“I come here daily. My go-to spot for work and chill time.” – Priya S.</div>
         </div>
     </section>
+
     <section class="newsletter">
         <h2>Join Our Newsletter</h2>
         <p>Be the first to know about our latest treats, seasonal specials, and cozy offers.</p>
@@ -522,7 +619,7 @@
 
     <footer id="contact">
         <p>123 Coffee Lane, YourCity • (123) 456‑7890 • info@cafedelight.com</p>
-        <div class="social-icons"> <i>Find us on:</i>
+        <div class="social-icons">
             <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
             <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
             <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
